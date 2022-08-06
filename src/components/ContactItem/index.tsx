@@ -8,7 +8,13 @@ interface ContactItemProps {
 }
 
 export function ContactItem({ contact }: ContactItemProps) {
-  const completeName = `${contact.name} ${contact.lastName}`;
+  let completeName = '';
+  if(contact.lastName) {
+    completeName = `${contact.name} ${contact.lastName}`;
+  } else {
+    completeName = contact.name;
+  }
+
   return (
     <ItemWrapper>
       <Row style={{ gap: "1rem" }}>

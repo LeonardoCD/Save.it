@@ -2,50 +2,13 @@ import { Row, Button, InputSearch, ContactItem } from "../../components";
 import { ContactList, Header, HeaderSearch } from "./styles";
 import Logo from "../../assets/logo.svg";
 import { IContact } from "../../shared/interfaces";
+import { useSelector } from "react-redux";
+import { getContactList } from "../../redux/slices/contactList";
 
-export const contactList: IContact[] = [
-  {
-    name: "João",
-    lastName: "Silva",
-    surname: "Santos",
-    telephone: ["+55 (11) 99999-9999"],
-    email: "leonardofelipe931@gmal.com",
-    address: [
-      {
-        cep: "01001-000",
-        street: "Rua dos Bobos",
-        number: "0",
-        neighborhood: "Bairro dos Bobos",
-        complement: "",
-        city: "São Paulo",
-        state: "SP"
-      }
-    ],
-    tag: "",
-  },
-  {
-    name: "Leonardo",
-    surname: "Leo",
-    telephone: ["(95) 99171-8840"],
-    email: "leonardofelipe931@gmal.com",
-    address: [
-      {
-        cep: "69314-338",
-        street: "Rua dos Bobos",
-        number: "0",
-        neighborhood: "Bairro dos Bobos",
-        complement: "",
-        city: "Boa Vista",
-        state: "RR"
-      }
-    ],
-    tag: "",
-  }
-];
 
 export function Home() {
-
   const listTitle = 'Lista geral de contatos';
+  const contactList = useSelector(getContactList);
 
   return (
     <>

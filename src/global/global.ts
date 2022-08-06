@@ -28,6 +28,7 @@ export const GlobalStyles = createGlobalStyle`
   --gray-300: #F6F6FF;
   
   --white: #FFFFFF;
+  --background: #F0F2F5;
 
   --red-900: #DD4E3E;
 
@@ -40,7 +41,7 @@ export const GlobalStyles = createGlobalStyle`
   --fw-bold: 700;
 
   /* Shadow */
-  --card-shadow: 0px 3px 25px #00000014;
+  --shadow: 0px 3px 25px #00000014;
 
 }
 

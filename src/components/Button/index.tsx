@@ -5,11 +5,23 @@ interface ButtonProps {
   color: string;
   background: string;
   onClick?: () => void;
+  width?: string;
 }
 
-export function Button({ color, background, onClick, text }: ButtonProps) {
+export function Button({
+  color,
+  background,
+  onClick,
+  text,
+  width,
+}: ButtonProps) {
   return (
-    <ButtonWrapper color={color} background={background} onClick={onClick}>
+    <ButtonWrapper
+      color={color}
+      background={background}
+      onClick={onClick}
+      width={width}
+    >
       {text}
     </ButtonWrapper>
   );

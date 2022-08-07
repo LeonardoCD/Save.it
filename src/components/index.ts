@@ -9,3 +9,5 @@ export { ShowContactModal } from "./ShowContactModal";
 export { DeleteContactModal } from "./DeleteContactModal";
 export { Header } from "./Header";
 export { ButtonWithIcon } from "./ButtonWithIcon";
+export { Form } from "./Form/styles";
+export { Input } from "./Input";

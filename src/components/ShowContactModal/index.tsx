@@ -1,6 +1,6 @@
 import { Avatar } from "@chakra-ui/react";
 import Modal from "react-modal";
-import { IAddress, IContact } from "../../shared/interfaces";
+import { IAddress } from "../../shared/interfaces";
 import {
   CloseButton,
   ContentModal,
@@ -13,18 +13,19 @@ import {
 } from "./styles";
 
 import CloseImg from "../../assets/close.svg";
+import { getActiveContact } from "../../redux/slices/activeContact";
+import { useSelector } from "react-redux";
 
 interface ShowContactModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  contact: IContact;
 }
 
 export function ShowContactModal({
   isOpen,
   onRequestClose,
-  contact,
 }: ShowContactModalProps) {
+  const contact = useSelector(getActiveContact);
   let completeName = "";
   if (contact.lastName) {
     completeName = `${contact.name} ${contact.lastName}`;
@@ -59,7 +60,7 @@ export function ShowContactModal({
           <WrapperData>
             <DataTitle>Telefone(s)</DataTitle>
             <RowData>
-              {contact.telephone.map((telephone: string) => {
+              {contact.telephone?.map((telephone: string) => {
                 return (
                   <Data>
                     <p>{telephone}</p>
@@ -81,7 +82,7 @@ export function ShowContactModal({
           <WrapperData>
             <DataTitle>Endereço(s)</DataTitle>
             <RowData>
-              {address.map((address: IAddress) => {
+              {address?.map((address: IAddress) => {
                 return (
                   <>
                     <Data>

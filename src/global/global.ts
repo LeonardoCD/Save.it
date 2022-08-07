@@ -98,9 +98,14 @@ button {
   background: var(--white);
   padding: 3rem;
   position: relative;
-  border-radius: 16px;
+  border-radius: 15px;
   overflow: scroll;
   outline: none;
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
 
 .react-modal-close {
@@ -111,7 +116,7 @@ button {
   background: transparent;
   transition: filter 0.2s;
   &:hover {
-      filter: brightness(0.8);
+    filter: brightness(0.8);
   }
 }
 
@@ -126,7 +131,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--dark-gray);
+  background-color: var(--gray-500);
   border-radius: 5px;
 }
 

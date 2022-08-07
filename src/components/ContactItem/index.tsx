@@ -1,15 +1,14 @@
 import { ContactName, ItemWrapper } from "./styles";
 import { Avatar } from "@chakra-ui/avatar";
-import { OutlineButton, Row, ShowContactModal } from "..";
+import { OutlineButton, Row} from "..";
 import { IContact } from "../../shared/interfaces";
-import { useState } from "react";
 
 interface ContactItemProps {
   contact: IContact;
+  onClick?: () => void;
 }
 
-export function ContactItem({ contact }: ContactItemProps) {
-  const [isShowContactOpen, setIsShowContactOpen] = useState(false);
+export function ContactItem({ contact, onClick }: ContactItemProps) {
   let completeName = "";
   if (contact.lastName) {
     completeName = `${contact.name} ${contact.lastName}`;
@@ -17,18 +16,8 @@ export function ContactItem({ contact }: ContactItemProps) {
     completeName = contact.name;
   }
 
-  function handleCloseContactModal() {
-    console.log("handleCloseContactModal");
-    setIsShowContactOpen(false);
-  }
-
-  function handleOpenContactModal() {
-    console.log("handleOpenContactModal");
-    setIsShowContactOpen(true);
-  }
-
   return (
-    <ItemWrapper onClick={handleOpenContactModal}>
+    <ItemWrapper onClick={onClick}>
       <Row style={{ gap: "1rem" }}>
         <Avatar name={completeName} />
         <ContactName>{completeName}</ContactName>
@@ -37,11 +26,7 @@ export function ContactItem({ contact }: ContactItemProps) {
         <OutlineButton color="var(--gray-600)" text="Editar" />
         <OutlineButton color="var(--red-900)" text="Excluir" />
       </Row>
-      <ShowContactModal
-        contact={contact}
-        isOpen={isShowContactOpen}
-        onRequestClose={handleCloseContactModal}
-      />
+      
     </ItemWrapper>
   );
 }

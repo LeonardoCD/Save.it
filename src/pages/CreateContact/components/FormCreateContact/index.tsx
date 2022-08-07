@@ -1,19 +1,47 @@
 import { Button, Form, Input, Row } from "../../../../components";
+import { useForm } from "react-hook-form";
+import { ICreateForm } from "../../../../shared/interfaces";
+import { createContactResolver } from "../../../../validators/formValidators";
 
 export function FormCreateContact() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ICreateForm>({
+    resolver: createContactResolver,
+  });
+
+  const handleCreateContact = (data: ICreateForm) => {
+    console.log(data);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(handleCreateContact)}>
       <h1>Criar Novo Contato</h1>
       <fieldset>
         <legend>Dados</legend>
-        <Input name="name" type="text" label="Nome" id="name" />
-        <Input name="lastName" type="text" label="Sobrenome" id="lastName" />
         <Input
-          name="surName"
+          {...register("name")}
+          type="text"
+          label="Nome"
+          id="name"
+          error={errors.name}
+        />
+        <Input
+          {...register("lastName")}
+          type="text"
+          label="Sobrenome"
+          id="lastName"
+          error={errors.lastName}
+        />
+        <Input
+          {...register("surName")}
           type="text"
           label="Apelido"
           id="surName"
           width="20rem"
+          error={errors.surName}
         />
       </fieldset>
 
@@ -21,21 +49,29 @@ export function FormCreateContact() {
         <legend>Contato</legend>
         <Row style={{ justifyContent: "space-between" }}>
           <Input
-            name="telephone"
+            {...register("telephone")}
             type="text"
             label="Telefone"
             id="telephone"
             width="18rem"
+            error={errors.telephone}
           />
           <Input
-            name="telephone2"
+            {...register("telephone2")}
             type="text"
             label="Telefone(2)"
             id="telephone2"
             width="18rem"
+            error={errors.telephone2}
           />
         </Row>
-        <Input name="email" type="email" label="E-mail" id="email" />
+        <Input
+          type="email"
+          label="E-mail"
+          id="email"
+          {...register("email")}
+          error={errors.email}
+        />
       </fieldset>
 
       <fieldset>
@@ -43,7 +79,14 @@ export function FormCreateContact() {
         <Row
           style={{ justifyContent: "space-between", alignItems: "flex-end" }}
         >
-          <Input name="cep" type="text" label="Cep" id="cep" width="26rem" />
+          <Input
+            {...register("cep")}
+            type="text"
+            label="Cep"
+            id="cep"
+            width="26rem"
+            error={errors.cep}
+          />
           <Button
             text="Buscar Cep"
             color="var(--white)"
@@ -52,35 +95,45 @@ export function FormCreateContact() {
         </Row>
         <Row style={{ justifyContent: "space-between" }}>
           <Input
-            name="logradouro"
+            {...register("street")}
             type="text"
             label="Logradouro"
-            id="logradouro"
+            id="street"
             width="18rem"
+            error={errors.street}
           />
           <Input
-            name="number"
+            {...register("number")}
             type="text"
             label="Número"
             id="number"
             width="18rem"
+            error={errors.number}
           />
         </Row>
         <Row style={{ justifyContent: "space-between" }}>
           <Input
-            name="locale"
+            {...register("locale")}
             type="text"
             label="Localidade"
             id="locale"
             width="18rem"
+            error={errors.locale}
           />
-          <Input name="uf" type="text" label="UF" id="uf" width="18rem" />
+          <Input
+            {...register("uf")}
+            type="text"
+            label="UF"
+            id="uf"
+            width="18rem"
+            error={errors.uf}
+          />
         </Row>
       </fieldset>
 
       <fieldset>
         <legend>Agrupamento</legend>
-        <Input name="tag" type="text" label="Marcador" id="tag" />
+        <Input {...register("tag")} type="text" label="Marcador" id="tag" />
       </fieldset>
 
       <Button
@@ -88,6 +141,7 @@ export function FormCreateContact() {
         color="var(--white)"
         background="var(--blue-700)"
         width="100%"
+        type="submit"
       />
     </Form>
   );

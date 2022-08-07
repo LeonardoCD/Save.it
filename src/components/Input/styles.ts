@@ -14,7 +14,12 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   gap: 0.75rem;
 
   margin-top: 1.4rem;
-  width: ${({ width }) => width ? width : '100%'};
+  width: ${({ width }) => (width ? width : "100%")};
+
+  span {
+    font-size: var(--medium);
+    color: var(--red-900);
+  }
 `;
 
 export const InputContainer = styled.input<InputProps>`
@@ -23,7 +28,8 @@ export const InputContainer = styled.input<InputProps>`
   padding: 1rem;
 
   color: var(--gray-800);
-  background-color: var(--gray-400);
+  background-color: ${({ error }) =>
+    error ? "var(--input-error)" : "var(--gray-400)"};
   border-radius: 15px;
   outline: none;
 `;

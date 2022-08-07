@@ -6,6 +6,7 @@ interface ButtonProps {
   background: string;
   onClick?: () => void;
   width?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export function Button({
@@ -14,6 +15,7 @@ export function Button({
   onClick,
   text,
   width,
+  type,
 }: ButtonProps) {
   return (
     <ButtonWrapper
@@ -21,6 +23,7 @@ export function Button({
       background={background}
       onClick={onClick}
       width={width}
+      type={type}
     >
       {text}
     </ButtonWrapper>

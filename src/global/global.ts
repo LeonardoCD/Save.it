@@ -32,6 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   --background: #F0F2F5;
 
   --red-900: #DD4E3E;
+  --input-error: #FFEFEF;
 
   /* Font weight */
 

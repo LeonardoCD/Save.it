@@ -1,6 +1,5 @@
 import { Avatar } from "@chakra-ui/react";
 import Modal from "react-modal";
-import { IAddress } from "../../shared/interfaces";
 import {
   CloseButton,
   ContentModal,

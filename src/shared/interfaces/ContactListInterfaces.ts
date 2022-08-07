@@ -15,5 +15,5 @@ export interface IContact {
   telephone: string[];
   email: string;
   address: IAddress[];
-  tag: string;
+  tag?: string;
 }

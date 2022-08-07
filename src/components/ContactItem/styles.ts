@@ -16,6 +16,9 @@ export const ItemWrapper = styled.div`
 
   overflow: hidden; 
 
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ContactName = styled.p`

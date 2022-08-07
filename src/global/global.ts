@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyle`
   --bigger: 1.5rem; // 24px
   --big: 1.25rem; // 20px
   --default: 1rem; // 16px
+  --between: 0.938rem; // 15px
   --medium: 0.875rem; // 14px
   --small: 0.75rem; // 12px
   --smaller: 0.6875rem; // 11px
@@ -50,7 +51,7 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
 }
-    
+
 html {
   @media (max-width: 1080px) {
       font-size: 93.75%;
@@ -66,7 +67,7 @@ body {
 }
 
 body, input, textarea, button {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   font-weight: var(--fw-regular);
 }
 
@@ -89,14 +90,19 @@ button {
   align-items: center;
   justify-content: center;
 }
+
 .react-modal-content {
-  width: 100%;
-  max-width: 576px;
-  background: var(--background);
+  /* width: 100%; */
+  max-width: 40rem;
+  max-height: 35rem;
+  background: var(--white);
   padding: 3rem;
   position: relative;
   border-radius: 16px;
+  overflow: scroll;
+  outline: none;
 }
+
 .react-modal-close {
   position: absolute;
   right: 1.5rem;

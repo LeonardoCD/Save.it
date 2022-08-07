@@ -1,8 +1,8 @@
 export { Row } from "./UI/Row/styles";
+export { Avatar } from "./Avatar";
 export { Button } from "./Button";
-export { InputSearch } from "./InputSearch";
 export { ButtonIcon } from "./ButtonIcon";
 export { ContactItem } from "./ContactItem";
-export { Avatar } from "./Avatar";
+export { InputSearch } from "./InputSearch";
 export { OutlineButton } from "./OutlineButton";
-  
+export { ShowContactModal } from "./ShowContactModal";

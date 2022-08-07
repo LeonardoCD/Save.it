@@ -1,13 +1,12 @@
 import { Row, Button, InputSearch, ContactItem } from "../../components";
-import { ContactList, Header, HeaderSearch } from "./styles";
-import Logo from "../../assets/logo.svg";
-import { IContact } from "../../shared/interfaces";
 import { useSelector } from "react-redux";
 import { getContactList } from "../../redux/slices/contactList";
-
+import { IContact } from "../../shared/interfaces";
+import { ContactList, Header, HeaderSearch } from "./styles";
+import Logo from "../../assets/logo.svg";
 
 export function Home() {
-  const listTitle = 'Lista geral de contatos';
+  const listTitle = "Lista geral de contatos";
   const contactList = useSelector(getContactList);
 
   return (

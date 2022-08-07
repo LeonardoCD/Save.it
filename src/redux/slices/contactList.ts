@@ -20,7 +20,7 @@ const initialState: IContact[] = [
         state: "SP"
       }
     ],
-    tag: "",
+    tag: "Amigo"
   },
   {
     name: "Leonardo",
@@ -37,8 +37,7 @@ const initialState: IContact[] = [
         city: "Boa Vista",
         state: "RR"
       }
-    ],
-    tag: "",
+    ]
   }
 ];
 

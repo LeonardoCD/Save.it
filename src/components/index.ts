@@ -7,3 +7,5 @@ export { InputSearch } from "./InputSearch";
 export { OutlineButton } from "./OutlineButton";
 export { ShowContactModal } from "./ShowContactModal";
 export { DeleteContactModal } from "./DeleteContactModal";
+export { Header } from "./Header";
+export { ButtonWithIcon } from "./ButtonWithIcon";

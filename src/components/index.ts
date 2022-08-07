@@ -6,3 +6,4 @@ export { ContactItem } from "./ContactItem";
 export { InputSearch } from "./InputSearch";
 export { OutlineButton } from "./OutlineButton";
 export { ShowContactModal } from "./ShowContactModal";
+export { DeleteContactModal } from "./DeleteContactModal";

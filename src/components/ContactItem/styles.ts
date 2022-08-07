@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   width: 100%;
   height: 4.4rem;
@@ -15,6 +15,14 @@ export const ItemWrapper = styled.div`
   border-radius: 15px;
 
   overflow: hidden; 
+`;
+
+export const ContactNameWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  /* max-width: 20rem; */
 
   &:hover {
     cursor: pointer;

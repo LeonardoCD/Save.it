@@ -4,11 +4,17 @@ interface OutlineButtonProps {
   color: string;
   text: string;
   onClick?: () => void;
+  padding?: string;
 }
 
-export function OutlineButton({ color, text, onClick }: OutlineButtonProps) {
+export function OutlineButton({
+  color,
+  text,
+  onClick,
+  padding,
+}: OutlineButtonProps) {
   return (
-    <OutlineButtonWrapper color={color} onClick={onClick}>
+    <OutlineButtonWrapper color={color} onClick={onClick} padding={padding}>
       {text}
     </OutlineButtonWrapper>
   );

@@ -82,23 +82,17 @@ export function ShowContactModal({
           <WrapperData>
             <DataTitle>Endereço(s)</DataTitle>
             <RowData>
-              {address?.map((address: IAddress) => {
-                return (
-                  <>
-                    <Data>
-                      <p>
-                        {address.street}, {address.number},{" "}
-                        {address.neighborhood}, {address.cep}
-                      </p>
-                    </Data>
-                    <Data>
-                      <p>
-                        {address.city}, {address.state}
-                      </p>
-                    </Data>
-                  </>
-                );
-              })}
+              <Data>
+                <p>
+                  {address?.street}, {address?.number}, {address?.neighborhood},{" "}
+                  {address?.cep}
+                </p>
+              </Data>
+              <Data>
+                <p>
+                  {address?.city}, {address?.state}
+                </p>
+              </Data>
             </RowData>
           </WrapperData>
 

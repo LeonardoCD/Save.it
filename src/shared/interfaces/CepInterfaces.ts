@@ -1,0 +1,16 @@
+export interface ICepResponse {
+  data: ICep;
+}
+
+export interface ICep {
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
+}

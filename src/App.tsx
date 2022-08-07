@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import { CreateContact } from "./pages/CreateContact";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -10,6 +12,16 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <ChakraProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
           <Routes>
             {/* public routes */}
             <Route path="/" element={<Home />} />

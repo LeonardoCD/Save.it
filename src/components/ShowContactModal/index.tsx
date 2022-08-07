@@ -34,6 +34,11 @@ export function ShowContactModal({
 
   const { address } = contact;
 
+  const formattedAddress = `${address?.street}, ${address?.number}, 
+    ${address?.neighborhood}, ${address?.cep}`;
+
+  const locale = `${address?.city}, ${address?.state}`;
+
   return (
     <Modal
       isOpen={isOpen}
@@ -79,18 +84,13 @@ export function ShowContactModal({
           </WrapperData>
 
           <WrapperData>
-            <DataTitle>Endereço(s)</DataTitle>
+            <DataTitle>Endereço</DataTitle>
             <RowData>
               <Data>
-                <p>
-                  {address?.street}, {address?.number}, {address?.neighborhood},{" "}
-                  {address?.cep}
-                </p>
+                <p>{formattedAddress}</p>
               </Data>
               <Data>
-                <p>
-                  {address?.city}, {address?.state}
-                </p>
+                <p>{locale}</p>
               </Data>
             </RowData>
           </WrapperData>

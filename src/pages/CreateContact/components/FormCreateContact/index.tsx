@@ -5,18 +5,28 @@ import { createContactResolver } from "../../../../validators/formValidators";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../../../redux/slices/contactList";
 import { useNavigate } from "react-router-dom";
+import { cep } from "../../../../shared/services/cep";
+import { ICep } from "../../../../shared/interfaces/CepInterfaces";
+import { toast } from "react-toastify";
+import {
+  onLoadingError,
+  onLoadingSuccess,
+} from "../../../../validators/feedBackValidators";
 
 export function FormCreateContact() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
+    setValue,
   } = useForm<ICreateForm>({
     resolver: createContactResolver,
   });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { sendCep } = cep();
 
   const handleCreateContact = (data: ICreateForm) => {
     const telephones: string[] = [];
@@ -34,6 +44,7 @@ export function FormCreateContact() {
       complement: data.complement,
       state: data.uf,
     };
+
     const contact: IContact = {
       name: data.name,
       lastName: data.lastName,
@@ -45,8 +56,34 @@ export function FormCreateContact() {
     };
 
     dispatch(addContact(contact));
+    toast.success("Contato criado com sucesso!");
     navigate("/");
   };
+
+  async function getCep(cep: string) {
+    if (cep === "") {
+      toast.warning("Informe um cep!");
+      return;
+    }
+    const loading = toast.loading("Buscando cep...");
+    try {
+      const resGetCep: { data: ICep } = await sendCep(cep);
+      console.log(resGetCep);
+
+      setValue('street', resGetCep.data.logradouro);
+      setValue('neighborhood', resGetCep.data.bairro);
+      setValue('complement', resGetCep.data.complemento);
+      setValue('locale', resGetCep.data.localidade);
+      setValue('uf', resGetCep.data.uf);
+
+      onLoadingSuccess(`Cep encontrado com sucesso!`, loading);
+    } catch (error: any) {
+      if (error.status === 400) {
+        onLoadingError(`O cep informado é inválido!`, loading);
+      }
+      onLoadingError(`Erro ao buscar o cep informado!`, loading);
+    }
+  }
 
   return (
     <Form onSubmit={handleSubmit(handleCreateContact)}>
@@ -123,6 +160,11 @@ export function FormCreateContact() {
             text="Buscar Cep"
             color="var(--white)"
             background="var(--blue-700)"
+            type="button"
+            onClick={() => {
+              const cep = getValues("cep");
+              getCep(cep);
+            }}
           />
         </Row>
         <Row style={{ justifyContent: "space-between" }}>

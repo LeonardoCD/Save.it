@@ -1,7 +1,10 @@
 import { Button, Form, Input, Row } from "../../../../components";
 import { useForm } from "react-hook-form";
-import { ICreateForm } from "../../../../shared/interfaces";
+import { IAddress, IContact, ICreateForm } from "../../../../shared/interfaces";
 import { createContactResolver } from "../../../../validators/formValidators";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../../../redux/slices/contactList";
+import { useNavigate } from "react-router-dom";
 
 export function FormCreateContact() {
   const {
@@ -12,8 +15,37 @@ export function FormCreateContact() {
     resolver: createContactResolver,
   });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleCreateContact = (data: ICreateForm) => {
-    console.log(data);
+    const telephones: string[] = [];
+    telephones.push(data.telephone);
+    if (data.telephone2) {
+      telephones.push(data.telephone2);
+    }
+
+    const add: IAddress = {
+      cep: data.cep,
+      street: data.street,
+      number: data.number,
+      neighborhood: data.neighborhood,
+      city: data.locale,
+      complement: data.complement,
+      state: data.uf,
+    };
+    const contact: IContact = {
+      name: data.name,
+      lastName: data.lastName,
+      surname: data.surName,
+      telephone: telephones,
+      email: data.email,
+      address: add,
+      tag: data.tag,
+    };
+
+    dispatch(addContact(contact));
+    navigate("/");
   };
 
   return (
@@ -109,6 +141,24 @@ export function FormCreateContact() {
             id="number"
             width="18rem"
             error={errors.number}
+          />
+        </Row>
+        <Row style={{ justifyContent: "space-between" }}>
+          <Input
+            {...register("neighborhood")}
+            type="text"
+            label="Bairro"
+            id="neighborhood"
+            width="18rem"
+            error={errors.neighborhood}
+          />
+          <Input
+            {...register("complement")}
+            type="text"
+            label="Complemento"
+            id="complement"
+            width="18rem"
+            error={errors.complement}
           />
         </Row>
         <Row style={{ justifyContent: "space-between" }}>

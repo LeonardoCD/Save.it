@@ -8,6 +8,8 @@ export interface ICreateForm {
   cep: string;
   street: string;
   number: string;
+  neighborhood: string;
+  complement: string;
   locale: string;
   uf: string;
   tag: string;

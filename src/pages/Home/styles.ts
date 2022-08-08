@@ -14,6 +14,7 @@ export const Header = styled.header`
 export const HeaderSearch = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   width: 100%;
 

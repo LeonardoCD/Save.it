@@ -5,7 +5,7 @@ import {
   ContactItem,
   ShowContactModal,
 } from "../../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IContact } from "../../shared/interfaces";
@@ -13,6 +13,7 @@ import { getContactList } from "../../redux/slices/contactList";
 import { setActiveContact } from "../../redux/slices/activeContact";
 import { ContactList, Header, HeaderSearch } from "./styles";
 import Logo from "../../assets/logo.svg";
+import { completeName } from "../../shared/utils";
 
 export function Home() {
   const listTitle = "Lista geral de contatos";
@@ -20,6 +21,43 @@ export function Home() {
   const [isShowContactOpen, setIsShowContactOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [inputSearch, setInputSearch] = useState("");
+  const [filterSearch, setFilterSearch] = useState<IContact[]>([]);
+  const [filteredList, setFilteredList] = useState<IContact[]>(contactList);
+
+  useEffect(() => {
+    if (inputSearch === "") {
+      setFilterSearch([]);
+      setFilteredList(contactList);
+    }
+  }, [inputSearch]);
+
+  // executa toda vez que o usuário digita
+  function onChangeInputValue(value: string) {
+    setInputSearch(value);
+
+    const newFilter = newFilteredList(value);
+
+    setFilterSearch(newFilter);
+    setFilteredList(newFilter);
+  }
+
+  // executa quando o usuário auto-completa o nome do contato
+  function handleAutoComplete(value: string) {
+    setInputSearch(value);
+    setFilterSearch([]);
+
+    const newFilter = newFilteredList(value);
+    setFilteredList(newFilter);
+  }
+
+  // gera uma nova lista de contatos filtrados
+  function newFilteredList(value: string) {
+    return contactList.filter((contact) => {
+      const name = completeName(contact.name, contact.lastName);
+      return name.toLocaleLowerCase().includes(value.toLocaleLowerCase());
+    });
+  }
 
   function handleCloseContactModal() {
     setIsShowContactOpen(false);
@@ -40,7 +78,16 @@ export function Home() {
       </Header>
 
       <HeaderSearch>
-        <InputSearch />
+        <InputSearch
+          inputValue={inputSearch}
+          setInputValue={setInputSearch}
+          filterSearch={filterSearch}
+          onChange={(event) => {
+            const { value } = event.target;
+            onChangeInputValue(value);
+          }}
+          onSelectItem={handleAutoComplete}
+        />
         <Button
           color="var(--primary)"
           background="var(--white)"
@@ -50,7 +97,7 @@ export function Home() {
 
       <ContactList>
         <h2>{listTitle}</h2>
-        {contactList.map((contact: IContact) => {
+        {filteredList.map((contact: IContact) => {
           return (
             <ContactItem
               key={contact.name}

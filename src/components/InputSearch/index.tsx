@@ -8,42 +8,27 @@ import {
 import SearchIcon from "../../assets/search.svg";
 import Clear from "../../assets/close.svg";
 import { ButtonIcon } from "../ButtonIcon";
-import { useSelector } from "react-redux";
-import { getContactList } from "../../redux/slices/contactList";
-import { useEffect, useState } from "react";
 import { IContact } from "../../shared/interfaces";
 import { completeName } from "../../shared/utils";
 
-export function InputSearch() {
-  const contactList = useSelector(getContactList);
-  const [inputSearch, setInputSearch] = useState("");
-  const [filterSearch, setFilterSearch] = useState<IContact[]>([]);
+interface InputSearchProps {
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  filterSearch: IContact[];
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelectItem: (value: string) => void;
+}
 
-  useEffect(() => {
-    if (inputSearch === "") {
-      setFilterSearch([]);
-    }
-  }, [inputSearch]);
-
-  function handleFilter(value: string) {
-    setInputSearch(value);
-
-    const newFilter = contactList.filter((contact) => {
-      return contact.name
-        .toLocaleLowerCase()
-        .includes(inputSearch.toLocaleLowerCase());
-    });
-
-    setFilterSearch(newFilter);
-  }
-
-  function handleAutoComplete(value: string) {
-    setInputSearch(value);
-    setFilterSearch([]);
-  }
-
+export function InputSearch({
+  inputValue,
+  setInputValue,
+  filterSearch,
+  onChange,
+  onSelectItem,
+}: InputSearchProps) {
+ 
   function clearInputSearch() {
-    if (inputSearch.length > 0) setInputSearch("");
+    if (inputValue.length > 0) setInputValue("");
   }
 
   return (
@@ -51,12 +36,9 @@ export function InputSearch() {
       <InputWrapper>
         <img src={SearchIcon} alt="search icon" />
         <Input
-          value={inputSearch}
+          value={inputValue}
           type="text"
-          onChange={(event) => {
-            const { value } = event.target;
-            handleFilter(value);
-          }}
+          onChange={onChange}
         />
         <ButtonIcon img={Clear} onClick={clearInputSearch} />
       </InputWrapper>
@@ -67,7 +49,7 @@ export function InputSearch() {
             <DataItem
               onClick={() => {
                 const name = completeName(contact.name, contact.lastName);
-                handleAutoComplete(name);
+                onSelectItem(name);
               }}
             >
               {completeName(contact.name, contact.lastName)}

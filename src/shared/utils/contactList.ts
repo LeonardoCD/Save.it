@@ -33,7 +33,7 @@ export const contactList: IContact[] = [
       city: "Boa Vista",
       state: "RR",
     },
-    tag: "",
+    tag: "Facul",
   },
   {
     name: "Fulano de Tal",

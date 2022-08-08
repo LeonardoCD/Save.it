@@ -14,6 +14,7 @@ import {
 import CloseImg from "../../assets/close.svg";
 import { getActiveContact } from "../../redux/slices/activeContact";
 import { useSelector } from "react-redux";
+import { fullName } from "../../shared/utils";
 
 interface ShowContactModalProps {
   isOpen: boolean;
@@ -25,12 +26,7 @@ export function ShowContactModal({
   onRequestClose,
 }: ShowContactModalProps) {
   const contact = useSelector(getActiveContact);
-  let completeName = "";
-  if (contact.lastName) {
-    completeName = `${contact.name} ${contact.lastName}`;
-  } else {
-    completeName = contact.name;
-  }
+  const name = fullName(contact.name, contact.lastName);
 
   const { address } = contact;
 
@@ -55,8 +51,8 @@ export function ShowContactModal({
       </CloseButton>
       <ContentModal>
         <TitleModal>
-          <Avatar name={completeName} />
-          <h1>{completeName}</h1>
+          <Avatar name={name} />
+          <h1>{name}</h1>
         </TitleModal>
 
         <SectionData>

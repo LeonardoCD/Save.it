@@ -9,7 +9,7 @@ import SearchIcon from "../../assets/search.svg";
 import Clear from "../../assets/close.svg";
 import { ButtonIcon } from "../ButtonIcon";
 import { IContact } from "../../shared/interfaces";
-import { completeName } from "../../shared/utils";
+import { fullName } from "../../shared/utils";
 
 interface InputSearchProps {
   inputValue: string;
@@ -48,11 +48,11 @@ export function InputSearch({
           {filterSearch.map((contact) => (
             <DataItem
               onClick={() => {
-                const name = completeName(contact.name, contact.lastName);
+                const name = fullName(contact.name, contact.lastName);
                 onSelectItem(name);
               }}
             >
-              {completeName(contact.name, contact.lastName)}
+              {fullName(contact.name, contact.lastName)}
             </DataItem>
           ))}
         </DataResult>

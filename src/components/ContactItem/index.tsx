@@ -3,6 +3,7 @@ import { Avatar } from "@chakra-ui/avatar";
 import { DeleteContactModal, OutlineButton, Row } from "..";
 import { IContact } from "../../shared/interfaces";
 import { useState } from "react";
+import { fullName } from "../../shared/utils";
 
 interface ContactItemProps {
   contact: IContact;
@@ -11,12 +12,8 @@ interface ContactItemProps {
 
 export function ContactItem({ contact, onClick }: ContactItemProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  let completeName = "";
-  if (contact.lastName) {
-    completeName = `${contact.name} ${contact.lastName}`;
-  } else {
-    completeName = contact.name;
-  }
+  const name = fullName(contact.name, contact.lastName);
+ 
 
   function handleCloseDeleteModal() {
     setIsDeleteModalOpen(false);
@@ -25,8 +22,8 @@ export function ContactItem({ contact, onClick }: ContactItemProps) {
   return (
     <ItemWrapper>
       <ContactNameWrapper onClick={onClick}>
-        <Avatar name={completeName} />
-        <ContactName>{completeName}</ContactName>
+        <Avatar name={name} />
+        <ContactName>{name}</ContactName>
       </ContactNameWrapper>
       <Row style={{ gap: "1rem" }}>
         <OutlineButton color="var(--gray-600)" text="Editar" />
@@ -39,7 +36,7 @@ export function ContactItem({ contact, onClick }: ContactItemProps) {
         />
       </Row>
       <DeleteContactModal
-        contactName={completeName}
+        contactName={name}
         isOpen={isDeleteModalOpen}
         onRequestClose={handleCloseDeleteModal}
       />

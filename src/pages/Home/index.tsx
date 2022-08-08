@@ -13,7 +13,7 @@ import { getContactList } from "../../redux/slices/contactList";
 import { setActiveContact } from "../../redux/slices/activeContact";
 import { ContactList, Header, HeaderSearch } from "./styles";
 import Logo from "../../assets/logo.svg";
-import { completeName } from "../../shared/utils";
+import { fullName } from "../../shared/utils";
 
 export function Home() {
   const listTitle = "Lista geral de contatos";
@@ -54,7 +54,7 @@ export function Home() {
   // gera uma nova lista de contatos filtrados
   function newFilteredList(value: string) {
     return contactList.filter((contact) => {
-      const name = completeName(contact.name, contact.lastName);
+      const name = fullName(contact.name, contact.lastName);
       return name.toLocaleLowerCase().includes(value.toLocaleLowerCase());
     });
   }

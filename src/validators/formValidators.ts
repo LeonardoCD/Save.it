@@ -14,7 +14,7 @@ const createContactFormSchema = yup.object().shape({
   neighborhood: yup.string(),
   complement: yup.string(),
   locale: yup.string(),
-  uf: yup.string(),
+  uf: yup.string().max(2, "UF aceita somente 2 caracteres"),
   tag: yup.string(),
 });
 

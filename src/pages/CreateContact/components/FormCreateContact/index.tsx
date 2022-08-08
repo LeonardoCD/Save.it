@@ -42,7 +42,7 @@ export function FormCreateContact() {
       neighborhood: data.neighborhood,
       city: data.locale,
       complement: data.complement,
-      state: data.uf,
+      state: data.uf.toLocaleUpperCase(),
     };
 
     const contact: IContact = {
@@ -67,7 +67,7 @@ export function FormCreateContact() {
     }
 
     cep = cep.replace("-", "").replace(".", "");
-    
+
     const loading = toast.loading("Buscando cep...");
     try {
       const resGetCep = await sendCep(cep);
@@ -176,7 +176,7 @@ export function FormCreateContact() {
             error={errors.cep}
             placeholder="99.999-999"
             onChange={(event) => {
-              const {value} = event.target;
+              const { value } = event.target;
               event.target.value = normalizeCep(value);
             }}
           />
@@ -231,7 +231,7 @@ export function FormCreateContact() {
             placeholder="Ao lado do mercadinho"
           />
         </Row>
-        <Row style={{ justifyContent: "space-between" }}>
+        <Row style={{ justifyContent: "space-between", alignItems: "inherit" }}>
           <Input
             {...register("locale")}
             type="text"

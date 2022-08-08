@@ -4,11 +4,12 @@ interface ButtonProps {
   color: string;
   background: string;
   width?: string;
+  height?: string;
 }
 
 export const ButtonWrapper = styled.button<ButtonProps>`
   width: ${({ width }) => (width ? width : "fit-content")};
-  height: fit-content;
+  height: ${({ height }) => (height ? height : "fit-content")};
   padding: 1rem 2rem;
 
   font-weight: var(--fw-medium);

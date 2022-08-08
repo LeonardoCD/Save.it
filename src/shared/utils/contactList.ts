@@ -33,7 +33,7 @@ export const contactList: IContact[] = [
       city: "Boa Vista",
       state: "RR",
     },
-    tag: "Facul",
+    tag: "Faculdade",
   },
   {
     name: "Fulano de Tal",
@@ -50,7 +50,7 @@ export const contactList: IContact[] = [
       city: "Boa Vista",
       state: "RR",
     },
-    tag: "Facul",
+    tag: "Amigos",
   },
   {
     name: "Ciclano",

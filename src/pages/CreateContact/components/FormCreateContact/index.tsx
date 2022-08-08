@@ -67,14 +67,16 @@ export function FormCreateContact() {
     }
     const loading = toast.loading("Buscando cep...");
     try {
-      const resGetCep: { data: ICep } = await sendCep(cep);
-      console.log(resGetCep);
-
-      setValue('street', resGetCep.data.logradouro);
-      setValue('neighborhood', resGetCep.data.bairro);
-      setValue('complement', resGetCep.data.complemento);
-      setValue('locale', resGetCep.data.localidade);
-      setValue('uf', resGetCep.data.uf);
+      const resGetCep = await sendCep(cep);
+      if (resGetCep.data.erro) {
+        onLoadingError(`Erro ao buscar informações do cep informado!`, loading);
+        return;
+      }
+      setValue("street", resGetCep.data.logradouro);
+      setValue("neighborhood", resGetCep.data.bairro);
+      setValue("complement", resGetCep.data.complemento);
+      setValue("locale", resGetCep.data.localidade);
+      setValue("uf", resGetCep.data.uf);
 
       onLoadingSuccess(`Cep encontrado com sucesso!`, loading);
     } catch (error: any) {

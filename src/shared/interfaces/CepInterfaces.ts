@@ -13,4 +13,5 @@ export interface ICep {
   gia: string;
   ddd: string;
   siafi: string;
+  erro?: string;
 }

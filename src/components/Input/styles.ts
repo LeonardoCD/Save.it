@@ -32,6 +32,10 @@ export const InputContainer = styled.input<InputProps>`
     error ? "var(--input-error)" : "var(--gray-400)"};
   border-radius: 15px;
   outline: none;
+
+  &::placeholder {
+    color: var(--input-placeholder);
+  }
 `;
 
 export const Label = styled.label`

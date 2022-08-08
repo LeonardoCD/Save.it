@@ -27,6 +27,8 @@ export const GlobalStyles = createGlobalStyle`
   --gray-500: #797D9A;
   --gray-400: #F0F0F5;
   --gray-300: #F6F6FF;
+
+  --input-placeholder: #B3B3B3;
   
   --white: #FFFFFF;
   --background: #F0F2F5;

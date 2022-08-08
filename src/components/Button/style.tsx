@@ -8,6 +8,7 @@ interface ButtonProps {
 
 export const ButtonWrapper = styled.button<ButtonProps>`
   width: ${({ width }) => (width ? width : "fit-content")};
+  height: fit-content;
   padding: 1rem 2rem;
 
   font-weight: var(--fw-medium);

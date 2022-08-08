@@ -6,12 +6,12 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../../../redux/slices/contactList";
 import { useNavigate } from "react-router-dom";
 import { cep } from "../../../../shared/services/cep";
-import { ICep } from "../../../../shared/interfaces/CepInterfaces";
 import { toast } from "react-toastify";
 import {
   onLoadingError,
   onLoadingSuccess,
 } from "../../../../validators/feedBackValidators";
+import { normalizeCep, normalizeTelephone } from "../../../../shared/utils";
 
 export function FormCreateContact() {
   const {
@@ -65,6 +65,9 @@ export function FormCreateContact() {
       toast.warning("Informe um cep!");
       return;
     }
+
+    cep = cep.replace("-", "").replace(".", "");
+    
     const loading = toast.loading("Buscando cep...");
     try {
       const resGetCep = await sendCep(cep);
@@ -98,6 +101,7 @@ export function FormCreateContact() {
           label="Nome"
           id="name"
           error={errors.name}
+          placeholder="João"
         />
         <Input
           {...register("lastName")}
@@ -105,6 +109,7 @@ export function FormCreateContact() {
           label="Sobrenome"
           id="lastName"
           error={errors.lastName}
+          placeholder="da Silva"
         />
         <Input
           {...register("surName")}
@@ -113,27 +118,38 @@ export function FormCreateContact() {
           id="surName"
           width="20rem"
           error={errors.surName}
+          placeholder="Joãozinho"
         />
       </fieldset>
 
       <fieldset>
         <legend>Contato</legend>
-        <Row style={{ justifyContent: "space-between" }}>
+        <Row style={{ justifyContent: "space-between", alignItems: "inherit" }}>
           <Input
             {...register("telephone")}
-            type="text"
+            type="tel"
+            placeholder="(00) 00000-0000"
             label="Telefone"
             id="telephone"
             width="18rem"
             error={errors.telephone}
+            onChange={(event) => {
+              const { value } = event.target;
+              event.target.value = normalizeTelephone(value);
+            }}
           />
           <Input
             {...register("telephone2")}
-            type="text"
+            type="tel"
+            placeholder="(00) 00000-0000"
             label="Telefone(2)"
             id="telephone2"
             width="18rem"
             error={errors.telephone2}
+            onChange={(event) => {
+              const { value } = event.target;
+              event.target.value = normalizeTelephone(value);
+            }}
           />
         </Row>
         <Input
@@ -142,6 +158,7 @@ export function FormCreateContact() {
           id="email"
           {...register("email")}
           error={errors.email}
+          placeholder="joao@gmail.com"
         />
       </fieldset>
 
@@ -157,6 +174,11 @@ export function FormCreateContact() {
             id="cep"
             width="26rem"
             error={errors.cep}
+            placeholder="99.999-999"
+            onChange={(event) => {
+              const {value} = event.target;
+              event.target.value = normalizeCep(value);
+            }}
           />
           <Button
             text="Buscar Cep"
@@ -177,6 +199,7 @@ export function FormCreateContact() {
             id="street"
             width="18rem"
             error={errors.street}
+            placeholder="Rua dos Bobos"
           />
           <Input
             {...register("number")}
@@ -185,6 +208,7 @@ export function FormCreateContact() {
             id="number"
             width="18rem"
             error={errors.number}
+            placeholder="687"
           />
         </Row>
         <Row style={{ justifyContent: "space-between" }}>
@@ -195,6 +219,7 @@ export function FormCreateContact() {
             id="neighborhood"
             width="18rem"
             error={errors.neighborhood}
+            placeholder="Bairro dos Bobos"
           />
           <Input
             {...register("complement")}
@@ -203,6 +228,7 @@ export function FormCreateContact() {
             id="complement"
             width="18rem"
             error={errors.complement}
+            placeholder="Ao lado do mercadinho"
           />
         </Row>
         <Row style={{ justifyContent: "space-between" }}>
@@ -213,6 +239,7 @@ export function FormCreateContact() {
             id="locale"
             width="18rem"
             error={errors.locale}
+            placeholder="Boa Vista"
           />
           <Input
             {...register("uf")}
@@ -221,13 +248,20 @@ export function FormCreateContact() {
             id="uf"
             width="18rem"
             error={errors.uf}
+            placeholder="RR"
           />
         </Row>
       </fieldset>
 
       <fieldset>
         <legend>Agrupamento</legend>
-        <Input {...register("tag")} type="text" label="Marcador" id="tag" />
+        <Input
+          {...register("tag")}
+          type="text"
+          label="Marcador"
+          id="tag"
+          placeholder="Família"
+        />
       </fieldset>
 
       <Button

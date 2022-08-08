@@ -1,11 +1,6 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const cep = yup
-  .string()
-  .min(8, "O CEP deve ter 8 dígitos")
-  .max(8, "O CEP deve ter 8 dígitos");
-
 const createContactFormSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
   lastName: yup.string(),
@@ -13,7 +8,7 @@ const createContactFormSchema = yup.object().shape({
   telephone: yup.string().required("Telefone obrigatório"),
   telephone2: yup.string(),
   email: yup.string().required("E-mail obrigatório"),
-  cep: cep,
+  cep: yup.string(),
   street: yup.string(),
   number: yup.string(),
   neighborhood: yup.string(),

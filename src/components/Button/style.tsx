@@ -19,4 +19,28 @@ export const ButtonWrapper = styled.button<ButtonProps>`
   border: none;
   color: ${({ color }) => color};
   background: ${({ background }) => background};
+
+  &:hover {
+    filter: brightness(0.97);
+  }
+
+  @media (max-width: 768px) {
+    font-size: var(--medium);
+    padding: 1.1rem 3rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: var(--medium);
+    padding: 1.1rem 2rem;
+  }
+
+  @media (max-width: 375px) {
+    font-size: var(--medium);
+    padding: 1.1rem 1rem;
+  }
+
+  @media (max-width: 320px) {
+    font-size: var(--medium);
+    padding: 1.1rem 1rem;
+  }
 `;

@@ -39,7 +39,7 @@ export function DeleteContactModal({
           />
           <OutlineButton
             text="Confirmar"
-            color="var(--gray-600)"
+            color="#3ab866"
             padding="0.75rem 1.5rem"
             onClick={() => {
               dispatch(removeContact(contact));

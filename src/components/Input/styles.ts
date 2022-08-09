@@ -20,6 +20,14 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     font-size: var(--medium);
     color: var(--red-900);
   }
+
+  @media (max-width: 375px) {
+    width: 100%;
+  }
+
+  @media (max-width: 320px) {
+    width: 100%;
+  }
 `;
 
 export const InputContainer = styled.input<InputProps>`
@@ -35,6 +43,12 @@ export const InputContainer = styled.input<InputProps>`
 
   &::placeholder {
     color: var(--input-placeholder);
+  }
+
+  @media (max-width: 320px) {
+    &::placeholder {
+      font-size: var(--medium);
+    }
   }
 `;
 

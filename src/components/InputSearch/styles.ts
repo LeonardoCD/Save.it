@@ -22,6 +22,18 @@ export const InputWrapper = styled.div`
   background: var(--white);
   border-radius: 15px;
   box-shadow: var(--shadow);
+
+  @media (max-width: 768px) {
+    width: 27rem;
+  }
+  
+  @media (max-width: 425px) {
+    width: 24rem;
+  }
+
+  @media (max-width: 320px) {
+    width: 20rem;
+  }
 `;
 
 export const Input = styled.input`

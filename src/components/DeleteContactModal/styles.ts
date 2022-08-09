@@ -17,4 +17,8 @@ export const ModalTitle = styled.p`
     color: var(--red-900);
     font-weight: var(--fw-semibold);
   }
+
+  @media (max-width: 320px) {
+    font-size: 1.1rem;
+  }
 `;

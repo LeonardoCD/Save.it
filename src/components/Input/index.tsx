@@ -11,6 +11,7 @@ interface InputProps {
   width?: string;
   error?: FieldError;
   onChange?: (event: any) => void;
+  style?: React.CSSProperties;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
@@ -23,12 +24,13 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     id,
     width,
     onChange,
+    style,
     ...rest
   },
   ref
 ) => {
   return (
-    <InputWrapper width={width}>
+    <InputWrapper width={width} style={style}>
       <Label htmlFor={id}>{label}</Label>
       <InputContainer
         id={id}

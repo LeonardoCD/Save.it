@@ -19,7 +19,7 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
       <SelectContainer name={name} id={id} {...rest} ref={ref}>
         <Option value="">Escolha uma opção</Option>
         {tagsList.map((tag) => (
-          <Option value={tag}>{tag}</Option>
+          <Option key={tag} value={tag}>{tag}</Option>
         ))}
       </SelectContainer>
     </SelectWrapper>

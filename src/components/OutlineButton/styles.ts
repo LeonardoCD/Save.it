@@ -14,4 +14,8 @@ export const OutlineButtonWrapper = styled.button<OutlineButtonProps>`
   color: ${({ color }) => color};
   border-radius: 15px;
   font-size: var(--medium);
+
+  &:hover {
+    filter: brightness(0.6);
+  }
 `;

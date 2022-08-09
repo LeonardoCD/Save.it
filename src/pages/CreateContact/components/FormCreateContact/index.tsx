@@ -17,6 +17,7 @@ import {
   normalizeCep,
   normalizeTelephone,
 } from "../../../../shared/utils";
+import { InputRow } from "../../../../components/Form/styles";
 
 export function FormCreateContact() {
   const {
@@ -137,14 +138,13 @@ export function FormCreateContact() {
 
       <fieldset>
         <legend>Contato</legend>
-        <Row style={{ justifyContent: "space-between", alignItems: "inherit" }}>
+        <InputRow>
           <Input
             {...register("telephone")}
             type="tel"
             placeholder="(00) 00000-0000"
             label="Telefone"
             id="telephone"
-            width="18rem"
             error={errors.telephone}
             onChange={(event) => {
               const { value } = event.target;
@@ -157,14 +157,13 @@ export function FormCreateContact() {
             placeholder="(00) 00000-0000"
             label="Telefone(2)"
             id="telephone2"
-            width="18rem"
             error={errors.telephone2}
             onChange={(event) => {
               const { value } = event.target;
               event.target.value = normalizeTelephone(value);
             }}
           />
-        </Row>
+        </InputRow>
         <Input
           type="email"
           label="E-mail"
@@ -178,20 +177,23 @@ export function FormCreateContact() {
       <fieldset>
         <legend>Endereço</legend>
         <Row
-          style={{ justifyContent: "space-between", alignItems: "flex-end" }}
+          style={{
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+          }}
         >
           <Input
             {...register("cep")}
             type="text"
             label="Cep"
             id="cep"
-            width="26rem"
             error={errors.cep}
             placeholder="99.999-999"
             onChange={(event) => {
               const { value } = event.target;
               event.target.value = normalizeCep(value);
             }}
+            style={{ maxWidth: "60%" }}
           />
           <Button
             text="Buscar Cep"
@@ -204,13 +206,12 @@ export function FormCreateContact() {
             }}
           />
         </Row>
-        <Row style={{ justifyContent: "space-between" }}>
+        <InputRow style={{ justifyContent: "space-between" }}>
           <Input
             {...register("street")}
             type="text"
             label="Logradouro"
             id="street"
-            width="18rem"
             error={errors.street}
             placeholder="Rua dos Bobos"
           />
@@ -219,18 +220,16 @@ export function FormCreateContact() {
             type="text"
             label="Número"
             id="number"
-            width="18rem"
             error={errors.number}
             placeholder="687"
           />
-        </Row>
-        <Row style={{ justifyContent: "space-between" }}>
+        </InputRow>
+        <InputRow>
           <Input
             {...register("neighborhood")}
             type="text"
             label="Bairro"
             id="neighborhood"
-            width="18rem"
             error={errors.neighborhood}
             placeholder="Bairro dos Bobos"
           />
@@ -239,18 +238,16 @@ export function FormCreateContact() {
             type="text"
             label="Complemento"
             id="complement"
-            width="18rem"
             error={errors.complement}
             placeholder="Ao lado do mercadinho"
           />
-        </Row>
-        <Row style={{ justifyContent: "space-between", alignItems: "inherit" }}>
+        </InputRow>
+        <InputRow>
           <Input
             {...register("locale")}
             type="text"
             label="Localidade"
             id="locale"
-            width="18rem"
             error={errors.locale}
             placeholder="Boa Vista"
           />
@@ -259,11 +256,10 @@ export function FormCreateContact() {
             type="text"
             label="UF"
             id="uf"
-            width="18rem"
             error={errors.uf}
             placeholder="RR"
           />
-        </Row>
+        </InputRow>
       </fieldset>
 
       <fieldset>

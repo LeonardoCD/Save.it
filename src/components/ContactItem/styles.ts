@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -14,7 +13,25 @@ export const ItemWrapper = styled.div`
   background-color: var(--white);
   border-radius: 15px;
 
-  overflow: hidden; 
+  overflow: hidden;
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 1rem;
+    gap: 1rem;
+  }
 `;
 
 export const ContactNameWrapper = styled.div`
@@ -22,10 +39,17 @@ export const ContactNameWrapper = styled.div`
   align-items: center;
   gap: 1rem;
   width: 100%;
-  /* max-width: 20rem; */
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 375px) {
+    width: fit-content;
+  }
+
+  @media (max-width: 320px) {
+    width: fit-content;
   }
 `;
 

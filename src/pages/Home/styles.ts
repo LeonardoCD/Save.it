@@ -34,6 +34,7 @@ export const ContactList = styled.div`
   overflow: scroll;
   
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 0 16rem;
 
   h2 {

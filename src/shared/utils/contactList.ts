@@ -5,7 +5,7 @@ export const contactList: IContact[] = [
     name: "João",
     lastName: "Silva",
     surname: "Santos",
-    telephone: ["+55 (11) 99999-9999"],
+    telephone: ["(92) 8117-6319"],
     email: "leonardofelipe931@gmal.com",
     address: {
       cep: "01001-000",
@@ -25,7 +25,7 @@ export const contactList: IContact[] = [
     telephone: ["(95) 99171-8840"],
     email: "leonardofelipe931@gmal.com",
     address: {
-      cep: "69314-338",
+      cep: "69.314-338",
       street: "Rua dos Bobos",
       number: "0",
       neighborhood: "Bairro dos Bobos",
@@ -42,7 +42,7 @@ export const contactList: IContact[] = [
     telephone: ["(95) 99171-8840"],
     email: "leonardofelipe931@gmal.com",
     address: {
-      cep: "69314-338",
+      cep: "69.314-338",
       street: "Raimundo de Castro",
       number: "676",
       neighborhood: "Dr. Sílvio Leite",
@@ -59,7 +59,7 @@ export const contactList: IContact[] = [
     telephone: ["(95) 99171-8840"],
     email: "leonardofelipe931@gmal.com",
     address: {
-      cep: "69314-338",
+      cep: "69.314-338",
       street: "Raimundo de Castro",
       number: "676",
       neighborhood: "Dr. Sílvio Leite",
@@ -76,7 +76,7 @@ export const contactList: IContact[] = [
     telephone: ["(95) 99171-8840"],
     email: "leonardofelipe931@gmal.com",
     address: {
-      cep: "69314-338",
+      cep: "69.314-338",
       street: "Raimundo de Castro",
       number: "676",
       neighborhood: "Dr. Sílvio Leite",

@@ -12,9 +12,9 @@ import {
 } from "./styles";
 
 import CloseImg from "../../assets/close.svg";
-import { getActiveContact } from "../../redux/slices/activeContact";
 import { useSelector } from "react-redux";
 import { fullName } from "../../shared/utils";
+import { getActiveContact } from "../../redux/slices";
 
 interface ShowContactModalProps {
   isOpen: boolean;
@@ -27,13 +27,7 @@ export function ShowContactModal({
 }: ShowContactModalProps) {
   const contact = useSelector(getActiveContact);
   const name = fullName(contact.name, contact.lastName);
-
-  const { address } = contact;
-
-  const formattedAddress = `${address?.street}, ${address?.number}, 
-    ${address?.neighborhood}, ${address?.cep}`;
-
-  const locale = `${address?.city}, ${address?.state}`;
+  const { address, surname } = contact;
 
   return (
     <Modal
@@ -52,7 +46,10 @@ export function ShowContactModal({
       <ContentModal>
         <TitleModal>
           <Avatar name={name} />
-          <h1>{name}</h1>
+          <h1>
+            {name}
+            {surname && ` - ${surname}`}
+          </h1>
         </TitleModal>
 
         <SectionData>
@@ -82,12 +79,36 @@ export function ShowContactModal({
           <WrapperData>
             <DataTitle>Endereço</DataTitle>
             <RowData>
-              <Data>
-                <p>{formattedAddress}</p>
-              </Data>
-              <Data>
-                <p>{locale}</p>
-              </Data>
+              {address?.street !== "" && (
+                <Data>
+                  <p>{address?.street}</p>
+                </Data>
+              )}
+              {address?.number !== "" && (
+                <Data>
+                  <p>{address?.number}</p>
+                </Data>
+              )}
+              {address?.neighborhood !== "" && (
+                <Data>
+                  <p>{address?.neighborhood}</p>
+                </Data>
+              )}
+              {address?.cep !== "" && (
+                <Data>
+                  <p>{address?.cep}</p>
+                </Data>
+              )}
+              {address?.city !== "" && (
+                <Data>
+                  <p>{address?.city}</p>
+                </Data>
+              )}
+              {address?.state !== "" && (
+                <Data>
+                  <p>{address?.state}</p>
+                </Data>
+              )}
             </RowData>
           </WrapperData>
 

@@ -2,34 +2,38 @@ import {
   Row,
   Button,
   InputSearch,
-  ContactItem,
   ShowContactModal,
   ShowTagsModal,
+  DeleteContactModal,
+  ContactItem,
 } from "../../components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getActiveTag,
-  getContactList,
-  setActiveContact,
-} from "../../redux/slices";
 import { useNavigate } from "react-router-dom";
 import { IContact } from "../../shared/interfaces";
 import { fullName } from "../../shared/utils";
 import { ContactList, Header, HeaderSearch } from "./styles";
 import Logo from "../../assets/logo.svg";
+import {
+  getActiveTag,
+  getContactList,
+  setActiveContact,
+} from "../../redux/slices";
 
 export function Home() {
-  const [listTitle, setListTitle] = useState("Lista geral de contatos");
   const contactList = useSelector(getContactList);
   const activeTag = useSelector(getActiveTag);
-  const [isShowContactOpen, setIsShowContactOpen] = useState(false);
-  const [isShowTagsOpen, setIsShowTagsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [listTitle, setListTitle] = useState("Lista geral de contatos");
   const [inputSearch, setInputSearch] = useState("");
   const [filterSearch, setFilterSearch] = useState<IContact[]>([]);
   const [filteredList, setFilteredList] = useState<IContact[]>(contactList);
+
+  const [isShowContactOpen, setIsShowContactOpen] = useState(false);
+  const [isShowTagsOpen, setIsShowTagsOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     if (activeTag) {
@@ -103,6 +107,10 @@ export function Home() {
     setIsShowTagsOpen(false);
   }
 
+  function handleCloseDeleteModal() {
+    setIsDeleteModalOpen(false);
+  }
+
   return (
     <>
       <Header>
@@ -144,9 +152,13 @@ export function Home() {
             <ContactItem
               key={contact.name}
               contact={contact}
-              onClick={() => {
+              onClickContact={() => {
                 dispatch(setActiveContact(contact));
                 setIsShowContactOpen(true);
+              }}
+              onClickDelete={() => {
+                setIsDeleteModalOpen(true);
+                dispatch(setActiveContact(contact));
               }}
             />
           );
@@ -159,6 +171,10 @@ export function Home() {
       <ShowTagsModal
         isOpen={isShowTagsOpen}
         onRequestClose={handleCloseTagsModal}
+      />
+      <DeleteContactModal
+        isOpen={isDeleteModalOpen}
+        onRequestClose={handleCloseDeleteModal}
       />
     </>
   );

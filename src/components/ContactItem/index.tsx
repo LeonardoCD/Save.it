@@ -1,27 +1,25 @@
 import { ContactName, ContactNameWrapper, ItemWrapper } from "./styles";
 import { Avatar } from "@chakra-ui/avatar";
-import { DeleteContactModal, OutlineButton, Row } from "..";
+import {  OutlineButton, Row } from "..";
 import { IContact } from "../../shared/interfaces";
-import { useState } from "react";
 import { fullName } from "../../shared/utils";
 
 interface ContactItemProps {
   contact: IContact;
-  onClick?: () => void;
+  onClickContact: () => void;
+  onClickDelete: () => void;
 }
 
-export function ContactItem({ contact, onClick }: ContactItemProps) {
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+export function ContactItem({
+  contact,
+  onClickContact,
+  onClickDelete,
+}: ContactItemProps) {
   const name = fullName(contact.name, contact.lastName);
- 
-
-  function handleCloseDeleteModal() {
-    setIsDeleteModalOpen(false);
-  }
 
   return (
     <ItemWrapper>
-      <ContactNameWrapper onClick={onClick}>
+      <ContactNameWrapper onClick={onClickContact}>
         <Avatar name={name} />
         <ContactName>{name}</ContactName>
       </ContactNameWrapper>
@@ -30,16 +28,9 @@ export function ContactItem({ contact, onClick }: ContactItemProps) {
         <OutlineButton
           color="var(--red-900)"
           text="Excluir"
-          onClick={() => {
-            setIsDeleteModalOpen(true);
-          }}
+          onClick={onClickDelete}
         />
       </Row>
-      <DeleteContactModal
-        contact={contact}
-        isOpen={isDeleteModalOpen}
-        onRequestClose={handleCloseDeleteModal}
-      />
     </ItemWrapper>
   );
 }

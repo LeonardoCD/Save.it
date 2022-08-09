@@ -147,10 +147,10 @@ export function Home() {
 
       <ContactList>
         <h2>{listTitle}</h2>
-        {filteredList.map((contact: IContact) => {
+        {filteredList.map((contact: IContact, index) => {
           return (
             <ContactItem
-              key={contact.name}
+              key={contact.name + index}
               contact={contact}
               onClickContact={() => {
                 dispatch(setActiveContact(contact));

@@ -36,6 +36,7 @@ export function ShowTagsModal({
         <Choices>
           {tagsList.map((tag) => (
             <Button
+              key={tag}
               background="var(--gray-400)"
               text={tag}
               color="var(--gray-600)"

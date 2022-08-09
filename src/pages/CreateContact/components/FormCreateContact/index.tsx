@@ -2,8 +2,8 @@ import { Button, Form, Input, Row } from "../../../../components";
 import { useForm } from "react-hook-form";
 import { IAddress, IContact, ICreateForm } from "../../../../shared/interfaces";
 import { createContactResolver } from "../../../../validators/formValidators";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../../../redux/slices/contactList";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact, getContactList } from "../../../../redux/slices";
 import { useNavigate } from "react-router-dom";
 import { cep } from "../../../../shared/services/cep";
 import { toast } from "react-toastify";
@@ -11,7 +11,12 @@ import {
   onLoadingError,
   onLoadingSuccess,
 } from "../../../../validators/feedBackValidators";
-import { normalizeCep, normalizeTelephone } from "../../../../shared/utils";
+import {
+  alreadyExists,
+  fullName,
+  normalizeCep,
+  normalizeTelephone,
+} from "../../../../shared/utils";
 
 export function FormCreateContact() {
   const {
@@ -26,9 +31,17 @@ export function FormCreateContact() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const contactList = useSelector(getContactList);
   const { sendCep } = cep();
 
   const handleCreateContact = (data: ICreateForm) => {
+    const currentName = fullName(data.name, data.lastName);
+    const exists = alreadyExists(contactList, currentName);
+    if (exists) {
+      toast.error(`${currentName} já existe na lista de contatos!`);
+      return;
+    }
+
     const telephones: string[] = [];
     telephones.push(data.telephone);
     if (data.telephone2) {

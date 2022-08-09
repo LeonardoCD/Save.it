@@ -32,6 +32,12 @@ export function Home() {
   const [filteredList, setFilteredList] = useState<IContact[]>(contactList);
 
   useEffect(() => {
+    if (activeTag) {
+      setFilteredList(
+        contactList.filter((contact) => contact.tag === activeTag)
+      );
+      return;
+    }
     setFilteredList(contactList);
   }, [contactList]);
 

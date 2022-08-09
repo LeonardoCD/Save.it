@@ -1,16 +1,19 @@
 import { toast } from "react-toastify";
 import { Button, Form, Input, Row, Select } from "../../../../components";
 import { InputRow } from "../../../../components/Form/styles";
-import { addContact, getContactList } from "../../../../redux/slices";
+import { editContact, getActiveContact, getContactList } from "../../../../redux/slices";
 import { useDispatch, useNavigate, useSelector, useForm } from "../../../../shared/hooks";
-import { IAddress, IContact, ICreateForm } from "../../../../shared/interfaces";
+import { IAddress, IContact, ICreateForm, IPrefillForm } from "../../../../shared/interfaces";
 import { cep } from "../../../../shared/services/cep";
 import { alreadyExists, fullName, normalizeCep, normalizeTelephone } from "../../../../shared/utils";
 import { onLoadingError, onLoadingSuccess } from "../../../../validators/feedBackValidators";
 import { createContactResolver } from "../../../../validators/formValidators";
 
+interface FormCreateContactProps {
+  contact?: IPrefillForm;
+}
 
-export function FormCreateContact() {
+export function FormCreateContact({ contact }: FormCreateContactProps) {
   const {
     register,
     handleSubmit,
@@ -19,14 +22,16 @@ export function FormCreateContact() {
     setValue,
   } = useForm<ICreateForm>({
     resolver: createContactResolver,
+    defaultValues: contact,
   });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const contactList = useSelector(getContactList);
+  const activeContact = useSelector(getActiveContact);
   const { sendCep } = cep();
 
-  const handleCreateContact = (data: ICreateForm) => {
+  const handleEditContact = (data: ICreateForm) => {
     const currentName = fullName(data.name, data.lastName);
     const exists = alreadyExists(contactList, currentName);
     if (exists) {
@@ -50,7 +55,7 @@ export function FormCreateContact() {
       state: data.uf.toLocaleUpperCase(),
     };
 
-    const contact: IContact = {
+    const newContact: IContact = {
       name: data.name,
       lastName: data.lastName,
       surname: data.surName,
@@ -60,8 +65,13 @@ export function FormCreateContact() {
       tag: data.tag,
     };
 
-    dispatch(addContact(contact));
-    toast.success("Contato criado com sucesso!");
+    const editeContact = {
+      activeContact: activeContact,
+      newContact: newContact,
+    }
+
+    dispatch(editContact(editeContact));
+    toast.success("Contato editado com sucesso!");
     navigate("/");
   };
 
@@ -96,8 +106,8 @@ export function FormCreateContact() {
   }
 
   return (
-    <Form onSubmit={handleSubmit(handleCreateContact)}>
-      <h1>Criar Novo Contato</h1>
+    <Form onSubmit={handleSubmit(handleEditContact)}>
+      <h1>Editar Contato</h1>
       <fieldset>
         <legend>Dados</legend>
         <Input
@@ -259,7 +269,7 @@ export function FormCreateContact() {
       </fieldset>
 
       <Button
-        text="CADASTRAR CONTATO"
+        text="EDITAR CONTATO"
         color="var(--white)"
         background="var(--blue-700)"
         width="100%"

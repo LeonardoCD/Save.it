@@ -1,6 +1,6 @@
 import { ContactName, ContactNameWrapper, ItemWrapper } from "./styles";
 import { Avatar } from "@chakra-ui/avatar";
-import {  OutlineButton, Row } from "..";
+import { OutlineButton, Row } from "..";
 import { IContact } from "../../shared/interfaces";
 import { fullName } from "../../shared/utils";
 
@@ -8,12 +8,14 @@ interface ContactItemProps {
   contact: IContact;
   onClickContact: () => void;
   onClickDelete: () => void;
+  onClickEdit: () => void;
 }
 
 export function ContactItem({
   contact,
   onClickContact,
   onClickDelete,
+  onClickEdit,
 }: ContactItemProps) {
   const name = fullName(contact.name, contact.lastName);
 
@@ -24,7 +26,11 @@ export function ContactItem({
         <ContactName>{name}</ContactName>
       </ContactNameWrapper>
       <Row style={{ gap: "1rem" }}>
-        <OutlineButton color="var(--gray-600)" text="Editar" />
+        <OutlineButton
+          color="var(--gray-600)"
+          text="Editar"
+          onClick={onClickEdit}
+        />
         <OutlineButton
           color="var(--red-900)"
           text="Excluir"

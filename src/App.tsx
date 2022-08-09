@@ -1,10 +1,9 @@
 import { GlobalStyles } from "./global/global";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
-import { CreateContact } from "./pages/CreateContact";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CreateContact, EditContact, Home } from "./pages";
 
 function App() {
   return (
@@ -26,6 +25,7 @@ function App() {
             {/* public routes */}
             <Route path="/" element={<Home />} />
             <Route path="/create-contact" element={<CreateContact />} />
+            <Route path="/edit-contact" element={<EditContact />} />
 
             {/* creation routes */}
             {/* <Route element={<RequireAuth />}>

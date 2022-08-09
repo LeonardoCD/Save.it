@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IContact } from "../../shared/interfaces";
+import { IContact, IEditContact } from "../../shared/interfaces";
 import { RootState } from "../store";
 import { contactList, fullName } from "../../shared/utils";
 
@@ -24,8 +24,26 @@ export const contactListSlice = createSlice({
       state = contact;
       return state;
     },
+    editContact(state, { payload }: PayloadAction<IEditContact>) {
+      const { activeContact, newContact } = payload;
+
+      const activeContactName = fullName(
+        activeContact.name,
+        activeContact.lastName
+      );
+
+      const contact = state.filter((contact) => {
+        const contactName = fullName(contact.name, contact.lastName);
+        return contactName !== activeContactName;
+      });
+
+      contact.push(newContact);
+      state = contact;
+      return state;
+    },
   },
 });
 
-export const { addContact, removeContact } = contactListSlice.actions;
+export const { addContact, removeContact, editContact } =
+  contactListSlice.actions;
 export const getContactList = (state: RootState) => state.contactList;

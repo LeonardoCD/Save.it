@@ -138,6 +138,10 @@ export function Home() {
             <ContactItem
               key={contact.name + index}
               contact={contact}
+              onClickEdit={() => {
+                dispatch(setActiveContact(contact));
+                navigate("edit-contact")
+              }}
               onClickContact={() => {
                 dispatch(setActiveContact(contact));
                 setIsShowContactOpen(true);

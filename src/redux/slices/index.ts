@@ -8,5 +8,6 @@ export {
   addContact,
   getContactList,
   removeContact,
+  editContact,
 } from "./contactList";
 export { activeTagSlice, setActiveTag, getActiveTag } from "./activeTag";

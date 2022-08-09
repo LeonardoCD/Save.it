@@ -1,4 +1,4 @@
-import { Button, Form, Input, Row } from "../../../../components";
+import { Button, Form, Input, Row, Select } from "../../../../components";
 import { useForm } from "react-hook-form";
 import { IAddress, IContact, ICreateForm } from "../../../../shared/interfaces";
 import { createContactResolver } from "../../../../validators/formValidators";
@@ -268,13 +268,14 @@ export function FormCreateContact() {
 
       <fieldset>
         <legend>Agrupamento</legend>
-        <Input
+        {/* <Input
           {...register("tag")}
           type="text"
           label="Marcador"
           id="tag"
           placeholder="Família"
-        />
+        /> */}
+        <Select label="Marcador" id="tag" {...register("tag")} />
       </fieldset>
 
       <Button

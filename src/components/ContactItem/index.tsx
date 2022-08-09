@@ -36,7 +36,7 @@ export function ContactItem({ contact, onClick }: ContactItemProps) {
         />
       </Row>
       <DeleteContactModal
-        contactName={name}
+        contact={contact}
         isOpen={isDeleteModalOpen}
         onRequestClose={handleCloseDeleteModal}
       />

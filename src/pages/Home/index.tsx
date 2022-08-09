@@ -32,6 +32,10 @@ export function Home() {
   const [filteredList, setFilteredList] = useState<IContact[]>(contactList);
 
   useEffect(() => {
+    setFilteredList(contactList);
+  }, [contactList]);
+
+  useEffect(() => {
     if (inputSearch === "") {
       setFilterSearch([]);
       setFilteredList(contactList);

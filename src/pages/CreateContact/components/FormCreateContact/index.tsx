@@ -1,10 +1,7 @@
 import { Button, Form, Input, Row, Select } from "../../../../components";
-import { useForm } from "react-hook-form";
 import { IAddress, IContact, ICreateForm } from "../../../../shared/interfaces";
 import { createContactResolver } from "../../../../validators/formValidators";
-import { useDispatch, useSelector } from "react-redux";
 import { addContact, getContactList } from "../../../../redux/slices";
-import { useNavigate } from "react-router-dom";
 import { cep } from "../../../../shared/services/cep";
 import { toast } from "react-toastify";
 import {
@@ -18,6 +15,7 @@ import {
   normalizeTelephone,
 } from "../../../../shared/utils";
 import { InputRow } from "../../../../components/Form/styles";
+import { useDispatch, useNavigate, useSelector, useForm } from "../../../../shared/hooks";
 
 export function FormCreateContact() {
   const {

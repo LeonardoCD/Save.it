@@ -7,9 +7,6 @@ import {
   DeleteContactModal,
   ContactItem,
 } from "../../components";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { IContact } from "../../shared/interfaces";
 import { fullName } from "../../shared/utils";
 import { ContactList, Header, HeaderSearch } from "./styles";
@@ -19,6 +16,7 @@ import {
   getContactList,
   setActiveContact,
 } from "../../redux/slices";
+import { useDispatch, useEffect, useNavigate, useSelector, useState } from "../../shared/hooks";
 
 export function Home() {
   const contactList = useSelector(getContactList);

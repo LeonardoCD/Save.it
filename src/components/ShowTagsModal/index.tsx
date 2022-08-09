@@ -1,8 +1,8 @@
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
 import { Button } from "..";
 import CloseImg from "../../assets/close.svg";
 import { setActiveTag } from "../../redux/slices";
+import { useDispatch } from "../../shared/hooks";
 import { tagsList } from "../../shared/utils";
 import { Choices, CloseButton, ContentModal } from "./styles";
 

@@ -1,7 +1,7 @@
 import Modal from "react-modal";
-import { useDispatch, useSelector } from "react-redux";
 import { OutlineButton, Row } from "..";
 import { getActiveContact, removeContact } from "../../redux/slices";
+import { useDispatch, useSelector } from "../../shared/hooks";
 import { fullName } from "../../shared/utils";
 import { ContentModal, ModalTitle } from "./styles";
 

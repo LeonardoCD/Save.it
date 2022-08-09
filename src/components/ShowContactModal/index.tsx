@@ -12,9 +12,9 @@ import {
 } from "./styles";
 
 import CloseImg from "../../assets/close.svg";
-import { useSelector } from "react-redux";
 import { fullName } from "../../shared/utils";
 import { getActiveContact } from "../../redux/slices";
+import { useSelector } from "../../shared/hooks";
 
 interface ShowContactModalProps {
   isOpen: boolean;

@@ -1,8 +1,8 @@
-import { HeaderWrapper } from "./styles";
-import Logo from "../../assets/logo.svg";
 import { ButtonWithIcon } from "..";
-import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
 import ArrowLeft from "../../assets/arrow-left.svg";
+import { HeaderWrapper } from "./styles";
+import { useNavigate } from "../../shared/hooks";
 
 export function Header() {
   const navigate = useNavigate();

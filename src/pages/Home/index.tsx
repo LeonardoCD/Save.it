@@ -99,18 +99,6 @@ export function Home() {
     });
   }
 
-  function handleCloseContactModal() {
-    setIsShowContactOpen(false);
-  }
-
-  function handleCloseTagsModal() {
-    setIsShowTagsOpen(false);
-  }
-
-  function handleCloseDeleteModal() {
-    setIsDeleteModalOpen(false);
-  }
-
   return (
     <>
       <Header>
@@ -166,15 +154,21 @@ export function Home() {
       </ContactList>
       <ShowContactModal
         isOpen={isShowContactOpen}
-        onRequestClose={handleCloseContactModal}
+        onRequestClose={() => {
+          setIsShowContactOpen(false);
+        }}
       />
       <ShowTagsModal
         isOpen={isShowTagsOpen}
-        onRequestClose={handleCloseTagsModal}
+        onRequestClose={() => {
+          setIsShowTagsOpen(false);
+        }}
       />
       <DeleteContactModal
         isOpen={isDeleteModalOpen}
-        onRequestClose={handleCloseDeleteModal}
+        onRequestClose={() => {
+          setIsDeleteModalOpen(false);
+        }}
       />
     </>
   );

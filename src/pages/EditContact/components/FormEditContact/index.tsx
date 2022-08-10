@@ -13,7 +13,7 @@ interface FormCreateContactProps {
   contact?: IPrefillForm;
 }
 
-export function FormCreateContact({ contact }: FormCreateContactProps) {
+export function FormEditContact({ contact }: FormCreateContactProps) {
   const {
     register,
     handleSubmit,

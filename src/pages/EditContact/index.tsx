@@ -2,7 +2,7 @@ import { Header } from "../../components";
 import { getActiveContact } from "../../redux/slices";
 import { useSelector } from "../../shared/hooks";
 import { IPrefillForm } from "../../shared/interfaces";
-import { FormCreateContact } from "./components/FormCreateContact";
+import { FormEditContact } from "./components/FormEditContact";
 
 export function EditContact() {
   const contact = useSelector(getActiveContact);
@@ -28,7 +28,7 @@ export function EditContact() {
   return (
     <>
       <Header />
-      <FormCreateContact contact={newContact} />
+      <FormEditContact contact={newContact} />
     </>
   );
 }

@@ -101,3 +101,12 @@ export const ContactList = styled.div`
     }
   }
 `;
+
+
+export const NoContact = styled.p`
+  color: var(--gray-900);
+  font-weight: var(--fw-semibold);
+  font-size: var(--big);
+  margin-top: 2rem;
+  color: var(--primary);
+`;

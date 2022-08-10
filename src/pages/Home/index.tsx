@@ -9,14 +9,20 @@ import {
 } from "../../components";
 import { IContact } from "../../shared/interfaces";
 import { fullName } from "../../shared/utils";
-import { ContactList, Header, HeaderSearch } from "./styles";
+import { ContactList, Header, HeaderSearch, NoContact } from "./styles";
 import Logo from "../../assets/logo.svg";
 import {
   getActiveTag,
   getContactList,
   setActiveContact,
 } from "../../redux/slices";
-import { useDispatch, useEffect, useNavigate, useSelector, useState } from "../../shared/hooks";
+import {
+  useDispatch,
+  useEffect,
+  useNavigate,
+  useSelector,
+  useState,
+} from "../../shared/hooks";
 
 export function Home() {
   const contactList = useSelector(getContactList);
@@ -44,9 +50,11 @@ export function Home() {
   }, [contactList]);
 
   useEffect(() => {
-    if (inputSearch === "") {
+    if (inputSearch === "" && activeTag === "") {
       setFilterSearch([]);
       setFilteredList(contactList);
+    } else if (inputSearch === "") {
+      setFilterSearch([]);
     }
   }, [inputSearch]);
 
@@ -133,6 +141,9 @@ export function Home() {
 
       <ContactList>
         <h2>{listTitle}</h2>
+        {filteredList.length === 0 && (
+          <NoContact>Nenhum contato encontrado!</NoContact>
+        )}
         {filteredList.map((contact: IContact, index) => {
           return (
             <ContactItem
@@ -140,7 +151,7 @@ export function Home() {
               contact={contact}
               onClickEdit={() => {
                 dispatch(setActiveContact(contact));
-                navigate("edit-contact")
+                navigate("edit-contact");
               }}
               onClickContact={() => {
                 dispatch(setActiveContact(contact));

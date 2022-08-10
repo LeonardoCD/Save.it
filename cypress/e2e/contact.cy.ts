@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("empty spec", () => {
+describe("Test the flow of creating and editing a contact", () => {
   it("Must create a contact", () => {
     //Acessa a home page e clica no botão de criar contato
     cy.visit("http://localhost:3000/");

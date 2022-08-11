@@ -18,21 +18,25 @@ describe("Test the flow of creating and editing a contact", () => {
     cy.get(".Toastify__toast-container").click();
 
     //Clica no botão de salvar
-    cy.get(".jKtaeM").click();
+    cy.get(".jKtaeM").click(); 
   });
 
   it("Must edit a contact", () => {
-    cy.get(":nth-child(7) > .sc-bczRLJ > .shRub").click();
-    cy.get("#lastName").clear().type("the White");
+    cy.get('.sc-papXJ').type('Gandalf the Grey');
+    cy.get('.sc-kDDrLX').click();
+    cy.get('.shRub').click();
+
+    cy.get('#lastName').clear().type('the White')
     cy.get("#telephone2").type("92 991180109");
 
     cy.get("#cep").clear().type("13069470");
     cy.get(".sc-bczRLJ > .sc-dkzDqf").click();
     cy.get(".Toastify__toast-container").click();
-
     cy.get(".jKtaeM").click();
 
-    cy.get(":nth-child(7) > .sc-jSMfEi").click();
+    cy.get('.sc-papXJ').type('Gandalf the White');
     cy.get(".Toastify__toast-container").click();
+    cy.get('.sc-kDDrLX').click();
+    cy.get('.sc-jSMfEi').click();
   });
 });
